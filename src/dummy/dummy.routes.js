@@ -22,8 +22,90 @@
         name: "employees",
         url: "/employees",
         title: "Employees",
-        component: "employeeGrid"
-      })
+        component: "employeeGrid",
+        IsMenuItem: true,
+        resolve: {
+
+          onCreate: ['$state', $state => {
+
+            return function () {
+
+              $state.go('employee');
+
+            }
+
+          }],
+
+          onEdit: ['$state', 'common', ($state, common) => {
+
+            return function (Id) {
+
+              if (common.isValidId(Id)) {
+
+                $state.go('employee', {
+
+                  Id
+
+                });
+
+              }
+
+            };
+
+          }]
+      }
+    })
+    .state({
+      name: "employee",
+      url: "/employee/{Id}",
+      title: "employees",
+      component: "employeeForm",
+      IsMenuItem: false,
+
+      
+      resolve: {
+
+        departmentId: ['$transition$', $transition$ => {
+
+          console.warn($transition$.params());
+
+          return $transition$.params().Id;
+
+        }],
+
+        onAction: ['$state', $state => {
+
+          return function () {
+
+            $state.go('employees');
+
+          }
+
+        }]
+
+      },
+
+      params: {
+
+        Id: {
+
+          type: 'int',
+
+          value: 0,
+
+          dynamic: true
+
+        }
+
+      }
+    })
+  
+      // .state({
+      //   name: "employees",
+      //   url: "/employees",
+      //   title: "Employees",
+      //   component: "employeeGrid"
+      // })
       
       .state({
         name: "departments",
