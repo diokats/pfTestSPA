@@ -1,0 +1,28 @@
+<h4 class="text-center">Employees</h4>
+<div class="table-responsive">
+    <div class="action-bar pb-2">
+        <button type="button" class="btn btn-info btn-sm" ng-click="$ctrl.onCreate()">Create</button>
+        <button type="button" class="btn btn-info btn-sm" ng-click="$ctrl.onEdit({ id: $ctrl.selectedId })">Edit</button>
+        <button type="button" class="btn btn-info btn-sm" ng-click="$ctrl.onDelete($ctrl.selectedId)">Delete</button>
+      </div>
+  
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Date of Birth</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="employees in $ctrl.employeesArray" ng-click="$ctrl.selectedId = employees.id"
+        ng-dblclick="$ctrl.select(employee)" ng-class="{ info: employees.id===$ctrl.selectedId}">
+        <td>{{employees.id}}</td>
+        <td>{{employees.firstname}}</td>
+        <td>{{employees.lastname}}</td>
+        <td>{{employees.dateOfBirth}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
