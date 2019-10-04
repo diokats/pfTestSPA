@@ -22,7 +22,7 @@
         name: "employees",
         url: "/employees",
         title: "Employees",
-        component: "pfEmployeeList"
+        component: "employeeGrid"
       })
       
       .state({

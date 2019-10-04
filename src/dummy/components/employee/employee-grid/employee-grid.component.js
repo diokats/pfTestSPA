@@ -3,18 +3,18 @@
 
   angular
     .module("pfTest.dummy")
-    .component("pfEmployeeList", {
-      templateUrl: "dummy/components/employee/employee-list.component.html",
-      controller: EmployeesListController,
+    .component("employeeGrid", {
+      templateUrl: "dummy/components/employee/employee-grid/employee-grid.component.html",
+      controller: EmployeeGridController,
       bindings: {
         onCreate: '&',
         onEdit: '&'
       }
     });
 
-  EmployeesListController.$inject = ['$scope', 'common', 'employeesService'];
+  EmployeeGridController.$inject = ['$scope', 'common', 'employeesService'];
 
-  function EmployeesListController($scope, common, employeesService) {
+  function EmployeeGridController($scope, common, employeesService) {
     const ctrl = this;
     ctrl.$onInit = onInit;
     ctrl.onDelete = onDelete;

@@ -1,0 +1,21 @@
+<h3 class="text-center">Create a new Department</h3>
+<ng-form name="customer">
+  <div class="form-group">
+
+    <label for="Name">First Name</label>
+    <input type="text" class="form-control input-sm" id="Firstame" name="Firstame" placeholder="First name of the new employee"
+      ng-model="$ctrl.employee.firstname">
+      <label for="Lastname">Last Name</label>
+      <input type="text" class="form-control input-sm" id="Lastname" name="Lastname" placeholder="Last name of the new employee"
+        ng-model="$ctrl.employee.Lastname">
+        <label for="dateOfBirth">Date Of Birth</label>
+        <input type="text" class="form-control input-sm" id="dateOfBirth" name="dateOfBirth" placeholder="insert the date of birth of the new employee"
+          ng-model="$ctrl.employee.dateOfBirth">
+        
+  </div>
+  <button type="button" class="btn btn-info btn-sm" ng-click="$ctrl.onCreate()">Create</button>
+  <button type="button" class="btn btn-warning btn-sm" ng-click="$ctrl.onEdit({ id: $ctrl.selectedId })">Cancel</button>
+  <entity-actions entity-id="$ctrl.customer.Id" on-create="$ctrl.onCancel(event)" on-update="$ctrl.onUpdate(event)"
+    on-cancel="$ctrl.onCancel(event)">
+  </entity-actions>
+</ng-form>

@@ -2,7 +2,7 @@
   "use strict";
 
   angular.module("pfTest.dummy").component("pfEmployees", {
-    templateUrl: "dummy/components/employee/employee.component.html",
+    templateUrl: "dummy/components/employee/employee-form/employee-form.component.html",
     controller: EmployeeController
   });
 
