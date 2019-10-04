@@ -1,5 +1,17 @@
 
 
-<h1>Welcome to Departments</h1>
 
-<department-form></department-form>
+
+<h3 class="text-center">Create a new Department</h3>
+<ng-form name="customer">
+  <div class="form-group">
+    <label for="Name">Name</label>
+    <input type="text" class="form-control input-sm" id="Name" name="Name" placeholder="Type the name of the Department"
+      ng-model="$ctrl.customer.Name">
+  </div>
+  <button type="button" class="btn btn-info btn-sm" ng-click="$ctrl.onCreate()">Create</button>
+  <button type="button" class="btn btn-warning btn-sm" ng-click="$ctrl.onEdit({ id: $ctrl.selectedId })">Cancel</button>
+  <entity-actions entity-id="$ctrl.customer.Id" on-create="$ctrl.onCancel(event)" on-update="$ctrl.onUpdate(event)"
+    on-cancel="$ctrl.onCancel(event)">
+  </entity-actions>
+</ng-form>

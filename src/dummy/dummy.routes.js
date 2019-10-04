@@ -24,12 +24,88 @@
         title: "Employees",
         component: "pfEmployeeList"
       })
+      
       .state({
         name: "departments",
         url: "/departments",
         title: "Departments",
-        component: "departmentGrid"
-      });
+        component: "departmentGrid",
+        IsMenuItem: true,
+        resolve: {
+
+          onCreate: ['$state', $state => {
+
+            return function () {
+
+              $state.go('department');
+
+            }
+
+          }],
+
+          onEdit: ['$state', 'common', ($state, common) => {
+
+            return function (Id) {
+
+              if (common.isValidId(Id)) {
+
+                $state.go('department', {
+
+                  Id
+
+                });
+
+              }
+
+            };
+
+          }]
+      }
+    })
+    .state({
+      name: "department",
+      url: "/department/{Id}",
+      title: "department",
+      component: "departmentForm",
+      IsMenuItem: false,
+
+      
+      resolve: {
+
+        departmentId: ['$transition$', $transition$ => {
+
+          console.warn($transition$.params());
+
+          return $transition$.params().Id;
+
+        }],
+
+        onAction: ['$state', $state => {
+
+          return function () {
+
+            $state.go('departments');
+
+          }
+
+        }]
+
+      },
+
+      params: {
+
+        Id: {
+
+          type: 'int',
+
+          value: 0,
+
+          dynamic: true
+
+        }
+
+      }
+    })
     $urlRouterProvider.otherwise("home");
   }
 })();
